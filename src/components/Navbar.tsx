@@ -26,16 +26,26 @@ export default function Navbar() {
 
             <div className="d-flex my-2 my-lg-0">
               <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#" aria-current="page">
-                    Home
-                    <span className="visually-hidden">(current)</span>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="dropdownId"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Language
                   </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Link
-                  </a>
+                  <div className="dropdown-menu" aria-labelledby="dropdownId">
+                    {[{ name: "English" }, { name: "Portuguese" }].map(
+                      (language) => (
+                        <a className="dropdown-item" href="./">
+                          {language.name}
+                        </a>
+                      )
+                    )}
+                  </div>
                 </li>
                 <li className="nav-item dropdown">
                   <a
@@ -46,7 +56,7 @@ export default function Navbar() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Dropdown
+                    Sections
                   </a>
                   <div className="dropdown-menu" aria-labelledby="dropdownId">
                     {routeList.map((routeItem) => (
