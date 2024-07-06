@@ -1,10 +1,14 @@
+import { RouteList } from "../Routes";
+
 export default function Navbar() {
+  const routeList = RouteList;
+
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            <strong>Navbar</strong>
+          <a className="navbar-brand" href="./">
+            <strong>ContemplateJS</strong>
           </a>
           <button
             className="navbar-toggler d-lg-none"
@@ -45,12 +49,11 @@ export default function Navbar() {
                     Dropdown
                   </a>
                   <div className="dropdown-menu" aria-labelledby="dropdownId">
-                    <a className="dropdown-item" href="#">
-                      Action 1
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Action 2
-                    </a>
+                    {routeList.map((routeItem) => (
+                      <a className="dropdown-item" href={routeItem.path}>
+                        {routeItem.label}
+                      </a>
+                    ))}
                   </div>
                 </li>
               </ul>
