@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ContainerCentered } from "./components/Containers";
 
 export interface RoutesProps {
   path: string;
@@ -8,6 +9,6 @@ export interface RoutesProps {
 export const Routes: RoutesProps[] = [
   {
     path: "/",
-    element: "Homeland",
+    element: <ContainerCentered>Contemplate</ContainerCentered>,
   },
 ];
