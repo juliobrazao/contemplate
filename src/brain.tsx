@@ -1,4 +1,10 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Main from "./Main";
+import { Routes } from "./Routes";
+import { Spinner } from "react-bootstrap";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<Main />);
+const router = createBrowserRouter(Routes);
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <RouterProvider router={router} fallbackElement={<Spinner />} />
+);
