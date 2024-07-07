@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Toast } from "react-bootstrap";
+import { Toast, ToastContainer } from "react-bootstrap";
 import styled from "styled-components";
 import {
   NotificationContext,
@@ -10,7 +10,11 @@ const StyledToast = styled(Toast)`
   border: none;
 `;
 
-const ToastText = styled.strong<{ $variant: string }>`
+const StyledToastContainer = styled(ToastContainer)`
+  padding-top: 2rem;
+`;
+
+const StyledToastText = styled.strong<{ $variant: string }>`
   color: ${({ $variant }) =>
     ["primary", "danger", "success", "secondary"].includes($variant)
       ? "white"
@@ -24,7 +28,7 @@ export default function Notification({
   const { show, setShow } = useContext(NotificationContext);
 
   return (
-    <>
+    <StyledToastContainer position="top-center">
       <StyledToast
         show={show}
         bg={variant}
@@ -33,9 +37,9 @@ export default function Notification({
         onClose={() => setShow && setShow(false)}
       >
         <Toast.Body>
-          <ToastText $variant={variant}>{message}</ToastText>
+          <StyledToastText $variant={variant}>{message}</StyledToastText>
         </Toast.Body>
       </StyledToast>
-    </>
+    </StyledToastContainer>
   );
 }
