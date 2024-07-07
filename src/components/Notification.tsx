@@ -1,36 +1,39 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Toast } from "react-bootstrap";
+import styled from "styled-components";
+import {
+  NotificationContext,
+  NotificationProps,
+} from "../contexts/NotificationContext";
 
-interface NotificationProps {
-  variant: string;
-  message: string;
-}
+const StyledToast = styled(Toast)`
+  border: none;
+`;
+
+const ToastText = styled.strong<{ $variant: string }>`
+  color: ${({ $variant }) =>
+    ["primary", "danger", "success", "secondary"].includes($variant)
+      ? "white"
+      : "black"};
+`;
 
 export default function Notification({
-  variant = "primary",
-  message = "some message here!",
+  variant = "",
+  message = "",
 }: NotificationProps) {
-  const [show, setShow] = useState<boolean>(true);
+  const { show, setShow } = useContext(NotificationContext);
 
   useEffect(() => {
-    setTimeout(() => setShow(false), 3000);
+    setTimeout(() => setShow && setShow(false), 3000);
   });
 
   return (
     <>
-      <Toast show={show} bg={variant} style={{ border: "none" }}>
+      <StyledToast show={show} bg={variant}>
         <Toast.Body>
-          <strong
-            className={`${
-              ["primary", "danger", "success", "secondary"].includes(variant)
-                ? "text-light"
-                : "text-dark"
-            }`}
-          >
-            {message}
-          </strong>
+          <ToastText $variant={variant}>{message}</ToastText>
         </Toast.Body>
-      </Toast>
+      </StyledToast>
     </>
   );
 }

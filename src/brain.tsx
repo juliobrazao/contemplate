@@ -3,9 +3,12 @@ import "bootstrap/dist/js/bootstrap";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { routes } from "./Routes";
+import NotificationContextProvider from "./contexts/NotificationContext";
 
 const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />
+  <NotificationContextProvider>
+    <RouterProvider router={router} />
+  </NotificationContextProvider>
 );
