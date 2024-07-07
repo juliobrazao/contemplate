@@ -16,6 +16,7 @@ export interface NotificationContextProps {
   setShow: Dispatch<SetStateAction<boolean>>;
   currentNotificationProps: NotificationProps;
   setCurrentNotificationProps: Dispatch<SetStateAction<NotificationProps>>;
+  handleSetAndShowNotification: (notificationProps: NotificationProps) => void;
 }
 
 interface NotificationContextProviderProps {
@@ -29,6 +30,7 @@ export const NotificationContext = createContext<
   setShow: () => {},
   currentNotificationProps: {},
   setCurrentNotificationProps: () => {},
+  handleSetAndShowNotification: () => {},
 });
 
 export default function NotificationContextProvider({
@@ -41,6 +43,17 @@ export default function NotificationContextProvider({
       message: "",
     });
 
+  const handleSetAndShowNotification = ({
+    variant,
+    message,
+  }: NotificationProps) => {
+    setCurrentNotificationProps({
+      variant,
+      message,
+    });
+    setShow(!show);
+  };
+
   return (
     <NotificationContext.Provider
       value={{
@@ -48,6 +61,7 @@ export default function NotificationContextProvider({
         setShow,
         currentNotificationProps,
         setCurrentNotificationProps,
+        handleSetAndShowNotification,
       }}
     >
       {children}

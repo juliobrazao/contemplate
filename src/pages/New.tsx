@@ -5,29 +5,23 @@ import { NotificationContext } from "../contexts/NotificationContext";
 import { useContext } from "react";
 
 export default function New() {
-  const {
-    show,
-    setShow,
-    currentNotificationProps,
-    setCurrentNotificationProps,
-  } = useContext(NotificationContext);
+  const { currentNotificationProps, handleSetAndShowNotification } =
+    useContext(NotificationContext);
 
   const handleShowSuccessNotification = () => {
-    setCurrentNotificationProps &&
-      setCurrentNotificationProps({
+    handleSetAndShowNotification &&
+      handleSetAndShowNotification({
         variant: "success",
         message: "User was added successfully!",
       });
-    setShow && setShow(!show);
   };
 
   const handleShowErrorNotification = () => {
-    setCurrentNotificationProps &&
-      setCurrentNotificationProps({
+    handleSetAndShowNotification &&
+      handleSetAndShowNotification({
         variant: "danger",
         message: "Network error! Please, try again!",
       });
-    setShow && setShow(!show);
   };
 
   return (
