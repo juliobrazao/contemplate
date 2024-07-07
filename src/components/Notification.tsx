@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Toast } from "react-bootstrap";
 import styled from "styled-components";
 import {
@@ -23,13 +23,15 @@ export default function Notification({
 }: NotificationProps) {
   const { show, setShow } = useContext(NotificationContext);
 
-  useEffect(() => {
-    setTimeout(() => setShow && setShow(false), 5000);
-  });
-
   return (
     <>
-      <StyledToast show={show} bg={variant}>
+      <StyledToast
+        show={show}
+        bg={variant}
+        delay={3000}
+        autohide={true}
+        onClose={() => setShow && setShow(false)}
+      >
         <Toast.Body>
           <ToastText $variant={variant}>{message}</ToastText>
         </Toast.Body>
