@@ -1,15 +1,54 @@
-import { PlusCircleFill } from "react-bootstrap-icons";
+import { PlusCircleFill, Trash2Fill } from "react-bootstrap-icons";
 import { ContainerFluid } from "../components/Containers";
 import Notification from "../components/Notification";
+import { NotificationContext } from "../contexts/NotificationContext";
+import { useContext } from "react";
 
 export default function New() {
+  const {
+    show,
+    setShow,
+    currentNotificationProps,
+    setCurrentNotificationProps,
+  } = useContext(NotificationContext);
+
+  const handleShowSuccessNotification = () => {
+    setCurrentNotificationProps &&
+      setCurrentNotificationProps({
+        variant: "success",
+        message: "User was added successfully!",
+      });
+    setShow && setShow(!show);
+  };
+
+  const handleShowErrorNotification = () => {
+    setCurrentNotificationProps &&
+      setCurrentNotificationProps({
+        variant: "danger",
+        message: "Network error! Please, try again!",
+      });
+    setShow && setShow(!show);
+  };
+
   return (
     <ContainerFluid>
       <div className="my-3 d-flex justify-content-end">
-        <button className="btn btn-lg btn-primary rounded-pill mx-2">
+        <button
+          className="btn btn-lg btn-primary rounded-pill mx-2"
+          onClick={handleShowSuccessNotification}
+        >
           <PlusCircleFill />
           &nbsp;&nbsp;
           <strong>New Item</strong>
+        </button>
+
+        <button
+          className="btn btn-lg btn-secondary rounded-pill mx-2"
+          onClick={handleShowErrorNotification}
+        >
+          <Trash2Fill />
+          &nbsp;&nbsp;
+          <strong>Delete Item</strong>
         </button>
       </div>
 
@@ -39,7 +78,10 @@ export default function New() {
         </div>
       </div>
 
-      <Notification variant="primary" message="In a bottle" />
+      <Notification
+        variant={currentNotificationProps?.variant}
+        message={currentNotificationProps?.message}
+      />
     </ContainerFluid>
   );
 }

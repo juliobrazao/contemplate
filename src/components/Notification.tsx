@@ -24,7 +24,7 @@ export default function Notification({
   const { show, setShow } = useContext(NotificationContext);
 
   useEffect(() => {
-    setTimeout(() => setShow && setShow(false), 3000);
+    setTimeout(() => setShow && setShow(false), 5000);
   });
 
   return (

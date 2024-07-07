@@ -37,8 +37,8 @@ export default function NotificationContextProvider({
   const [show, setShow] = useState<boolean>(true);
   const [currentNotificationProps, setCurrentNotificationProps] =
     useState<NotificationProps>({
-      variant: "warning",
-      message: "Default notification just for demonstration!",
+      variant: "",
+      message: "",
     });
 
   return (
