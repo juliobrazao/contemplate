@@ -5,7 +5,6 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { FALSE } from "sass";
 
 export interface DialogProps {
   title?: string;
