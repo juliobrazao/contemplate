@@ -3,10 +3,14 @@ import { ContainerFluid } from "../components/Containers";
 import Notification from "../components/Notification";
 import { NotificationContext } from "../contexts/NotificationContext";
 import { useContext } from "react";
+import { DialogContext } from "../contexts/DialogContext";
+import Dialog from "../components/Dialog";
 
 export default function New() {
   const { currentNotificationProps, handleSetAndShowNotification } =
     useContext(NotificationContext);
+  const { currentDialogProps, handleSetAndShowDialog } =
+    useContext(DialogContext);
 
   const handleShowSuccessNotification = () => {
     handleSetAndShowNotification &&
@@ -16,11 +20,11 @@ export default function New() {
       });
   };
 
-  const handleShowErrorNotification = () => {
-    handleSetAndShowNotification &&
-      handleSetAndShowNotification({
-        variant: "danger",
-        message: "Network error! Please, try again!",
+  const handleShowDialog = () => {
+    handleSetAndShowDialog &&
+      handleSetAndShowDialog({
+        title: "Dialog Test",
+        content: "This is a dialog!",
       });
   };
 
@@ -33,16 +37,16 @@ export default function New() {
         >
           <PlusCircleFill />
           &nbsp;&nbsp;
-          <strong>New Item</strong>
+          <strong>Call Notification</strong>
         </button>
 
         <button
           className="btn btn-lg btn-secondary rounded-pill mx-2"
-          onClick={handleShowErrorNotification}
+          onClick={handleShowDialog}
         >
           <Trash2Fill />
           &nbsp;&nbsp;
-          <strong>Delete Item</strong>
+          <strong>Call Modal</strong>
         </button>
       </div>
 
@@ -75,6 +79,10 @@ export default function New() {
       <Notification
         variant={currentNotificationProps?.variant}
         message={currentNotificationProps?.message}
+      />
+      <Dialog
+        title={currentDialogProps?.title}
+        content={currentDialogProps?.content}
       />
     </ContainerFluid>
   );

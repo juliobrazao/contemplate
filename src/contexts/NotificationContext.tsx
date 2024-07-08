@@ -36,7 +36,7 @@ export const NotificationContext = createContext<
 export default function NotificationContextProvider({
   children,
 }: NotificationContextProviderProps) {
-  const [show, setShow] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
   const [currentNotificationProps, setCurrentNotificationProps] =
     useState<NotificationProps>({
       variant: "",

@@ -5,6 +5,7 @@ import {
   SetStateAction,
   useState,
 } from "react";
+import { FALSE } from "sass";
 
 export interface DialogProps {
   title?: string;
@@ -34,7 +35,7 @@ export const DialogContext = createContext<Partial<DialogContextProps>>({
 export default function DialogContextProvider({
   children,
 }: DialogContextProviderProps) {
-  const [show, setShow] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
   const [currentDialogProps, setCurrentDialogProps] = useState<DialogProps>({
     title: "",
     content: "",
