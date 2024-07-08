@@ -1,10 +1,10 @@
 import { PlusCircleFill, Trash2Fill } from "react-bootstrap-icons";
-import { ContainerFluid } from "../components/Containers";
-import Notification from "../components/Notification";
-import { NotificationContext } from "../contexts/NotificationContext";
+import { ContainerFluid } from "../../components/Containers";
+import Notification from "../../components/Notification";
+import { NotificationContext } from "../../contexts/NotificationContext";
 import { useContext } from "react";
-import { DialogContext } from "../contexts/DialogContext";
-import Dialog from "../components/Dialog";
+import { DialogContext } from "../../contexts/DialogContext";
+import Dialog from "../../components/Dialog";
 
 export default function New() {
   const { currentNotificationProps, handleSetAndShowNotification } =

@@ -1,4 +1,4 @@
-import { ContainerFluid } from "../components/Containers";
+import { ContainerFluid } from "../../components/Containers";
 
 export default function Home() {
   return (
