@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { ContainerFluid } from "../../components/Containers";
+import { useReadUsers } from "../../hooks/useUsers";
 
 export default function Home() {
+  const { data } = useReadUsers();
+
+  useEffect(() => {
+    console.log("data: ", data);
+  }, [data]);
+
   return (
     <ContainerFluid>
       <span className="text-primary my-3">
